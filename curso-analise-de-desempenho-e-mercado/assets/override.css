@@ -1,0 +1,173 @@
+
+/* === FI Clean Theme Overrides (keeps layout; only visuals) === */
+
+/* Improve base background + text rendering */
+body{
+  background-color:#060810!important;
+  color:rgba(255,255,255,.92)!important;
+}
+
+/* Common Elementor section backgrounds:
+   Replace any remote/wp uploads backgrounds with local FI backgrounds */
+[class*="elementor-section"]{
+  background-size:cover!important;
+  background-position:center!important;
+}
+
+/* Hero / top sections often have background-image inline or via elementor settings.
+   Force local hero image where Elementor applies background on a container */
+.elementor-section.elementor-top-section:first-of-type{
+  background-image:url("./backgrounds/hero.jpg")!important;
+}
+
+/* Generic fallback for sections that had wp uploads backgrounds */
+.elementor-section[style*="wp-content/uploads"],
+.elementor-column[style*="wp-content/uploads"],
+.elementor-widget-wrap[style*="wp-content/uploads"],
+.elementor-container[style*="wp-content/uploads"]{
+  background-image:url("./backgrounds/section.jpg")!important;
+}
+
+/* Also for CSS rules that still contain wp uploads, we can't target them directly,
+   but we can enhance visual consistency with overlays */
+.elementor-section.elementor-top-section{
+  position:relative;
+}
+.elementor-section.elementor-top-section::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(6,8,16,.40), rgba(6,8,16,.92));
+  pointer-events:none;
+}
+.elementor-section.elementor-top-section > .elementor-container{
+  position:relative;
+}
+
+/* Buttons: unify to FI blue */
+a.elementor-button, .elementor-button-link, button, input[type="submit"]{
+  border-radius:999px!important;
+  background:linear-gradient(135deg,#007BFF,#4DA3FF)!important;
+  border:0!important;
+  box-shadow:0 14px 35px rgba(0,123,255,.22)!important;
+}
+a.elementor-button:hover, .elementor-button-link:hover, button:hover, input[type="submit"]:hover{
+  filter:brightness(1.05);
+  transform:translateY(-1px);
+}
+
+/* Cards / boxes: subtle glass look */
+.elementor-widget-container, .elementor-column-wrap, .elementor-widget-wrap{
+  /* don't overwrite all, only soften common box backgrounds */
+}
+.elementor-element .elementor-widget-container[style*="background"]{
+  border:1px solid rgba(255,255,255,.10)!important;
+  background:rgba(255,255,255,.05)!important;
+  border-radius:18px!important;
+}
+
+/* Ensure anchors scroll nicely under sticky headers */
+html{ scroll-behavior:smooth; }
+:target{ scroll-margin-top:90px; }
+
+/* === Mobile spacing fix (PARA QUEM É ESTE CURSO) === */
+@media (max-width: 520px){
+  /* reduz padding vertical excessivo */
+  .elementor-section{
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+  /* reduz espaçamento interno de colunas/cards */
+  .elementor-column-wrap,
+  .elementor-widget-wrap{
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+}
+
+/* === FIX ESPECÍFICO MOBILE — 'PARA QUEM É ESTE CURSO?' === */
+@media (max-width: 520px){
+  /* remove margem inferior excessiva após o botão */
+  #para-quem,
+  .elementor-section[id*="para"],
+  .elementor-section:has(h2, h3){
+    padding-bottom: 12px !important;
+  }
+
+  #para-quem .elementor-widget-button,
+  #para-quem .elementor-button-wrapper{
+    margin-bottom: 0 !important;
+  }
+
+  #para-quem .elementor-widget:not(:last-child){
+    margin-bottom: 12px !important;
+  }
+}
+
+
+/* === YouTube embed padrão (mesmo modelo do exemplo que funciona) === */
+.video-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+.video-container iframe{
+  position: absolute;
+  top:0; left:0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 14px;
+}
+
+
+
+/* === Depoimentos: botão para abrir vídeo no YouTube (fallback definitivo) === */
+.fi-video-link{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+  display:block;
+}
+.fi-video-link__thumb{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit: cover;
+  filter: contrast(1.02) saturate(1.02);
+}
+.fi-video-link__overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.60));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
+}
+.fi-video-link__btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(0,123,255,.95);
+  color:#fff;
+  font-weight: 700;
+  text-decoration:none;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+.fi-video-link__btn svg{ width:18px; height:18px; }
+.fi-video-link__hint{
+  position:absolute;
+  left:12px; right:12px; bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:12px;
+  color:rgba(255,255,255,.92);
+  pointer-events:none;
+}
+
