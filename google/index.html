@@ -48,6 +48,18 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link href="./assets/css/widget-video.min.css" id="widget-video-css" media="all" rel="stylesheet"/>
 <link href="./assets/css/widget-counter.min.css" id="widget-counter-css" media="all" rel="stylesheet"/>
 <link href="./assets/css/e-animation-grow.min.css" id="e-animation-grow-css" media="all" rel="stylesheet"/>
+
+<!-- Mobile fix: keep hero text before the form (only affects the initial block) -->
+<style>
+@media (max-width: 767px){
+  /* The first section (hero) is a 2-column flex container on desktop. On mobile, Elementor's
+     saved order may put the form first; force text first without changing the DOM structure. */
+  .elementor-element-cb868d1 > .e-con-inner{display:flex !important;flex-direction:column !important;}
+  .elementor-element-cb868d1 .elementor-element-3dbc8d7{order:1 !important;}
+  .elementor-element-cb868d1 .elementor-element-8bed26f{order:2 !important;}
+  .elementor-element-cb868d1 .elementor-element-8bed26f{margin-top:16px !important;}
+}
+</style>
 <link href="./assets/css/swiper.min.css" id="swiper-css" media="all" rel="stylesheet"/>
 <link href="./assets/css/e-swiper.min.css" id="e-swiper-css" media="all" rel="stylesheet"/>
 <link href="./assets/css/widget-image-carousel.min.css" id="widget-image-carousel-css" media="all" rel="stylesheet"/>
@@ -123,7 +135,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     height: auto;
   }
 }
-</style></head>
+<style>
+@media (max-width: 767px){
+  .elementor-element-368a36e .e-con-inner{
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .elementor-element-7b201fa{ margin-bottom: 12px !important; }
+  .elementor-element-7b201fa img{
+    display:block;
+    margin: 0 auto 12px auto;
+    position: relative !important;
+    z-index: 2;
+    max-width: 72px !important;
+    height: auto !important;
+  }
+  /* título branco no mobile */
+  .elementor-element-4645fad .elementor-heading-title,
+  .elementor-element-4645fad .elementor-heading-title strong{
+    color: #ffffff !important;
+  }
+  /* parágrafo maior no mobile */
+  .elementor-element-83bea98 .elementor-icon-list-text{
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+}
+</style>
+</style>
+
+<!-- Mobile fixes (only): avoid text overlapping the background image in "PARA QUEM SÃO NOSSOS CURSOS?" + slightly larger hero paragraph -->
+<style id="fi-mobile-para-quem-fix">
+@media (max-width: 767px){
+  /* Increase the hero paragraph a bit more on mobile */
+  .elementor-element-83bea98 .elementor-icon-list-text{font-size:17px !important; line-height:1.55 !important;}
+
+  /* PARA QUEM SÃO NOSSOS CURSOS?
+     Keep the original background image and improve readability without breaking the image. */
+  .elementor-13741 .elementor-element.elementor-element-098ca6a{
+    background-position: bottom center !important;
+    background-size: cover !important;
+  }
+  .elementor-13741 .elementor-element.elementor-element-098ca6a .elementor-element.elementor-element-1b88db9{
+    width: 100% !important;
+    max-width: 100% !important;
+    background: rgba(0,0,0,0.55) !important;
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+  }
+  .elementor-13741 .elementor-element.elementor-element-098ca6a .elementor-element.elementor-element-8584252{
+    display: none !important; /* keep layout stable; this column is empty on mobile */
+  }
+}
+</style>
+
+<style>@media(max-width:767px){.elementor-element-cb868d1{padding-top:40px!important}.elementor-element-4645fad .elementor-heading-title,.elementor-element-4645fad .elementor-heading-title strong{color:#fff!important}.elementor-element-83bea98 .elementor-icon-list-text{font-size:17px!important;line-height:1.55!important}}</style></head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-13741 logged-in admin-bar wp-theme-hello-elementor elementor-default elementor-template-canvas elementor-kit-7 elementor-page elementor-page-13741 customize-support dialog-body dialog-buttons-body dialog-container dialog-buttons-container e--ua-blink e--ua-chrome e--ua-webkit" data-elementor-device-mode="desktop"><div id="oferta" style="position:relative;top:-80px;"></div><div id="professores" style="position:relative;top:-80px;"></div><div id="conteudo" style="position:relative;top:-80px;"></div><div id="inicio" style="position:relative;top:-80px;"></div><!-- Google Tag Manager (noscript) -->
 <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-MH9PQ8F" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
@@ -196,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="elementor-element elementor-element-3dbc8d7 e-con-full e-flex e-con e-child" data-element_type="container" data-id="3dbc8d7">
 <div class="elementor-element elementor-element-2e124c9 elementor-widget elementor-widget-heading" data-element_type="widget" data-id="2e124c9" data-settings='{"_animation":"none"}' data-widget_type="heading.default">
 <div class="elementor-widget-container">
-<h4 class="elementor-heading-title elementor-size-default"><strong>FUTEBOL INTERATIVO: A MAIOR ESCOLA DE CAPACITAÇÃO DE PROFISSIONAIS NO FUTEBOL DA AMÉRICA LATINA!</strong></h4> </div>
+<h4 class="elementor-heading-title elementor-size-default"></h4> </div>
 </div>
 <div class="elementor-element elementor-element-4645fad elementor-widget elementor-widget-heading animated zoomIn" data-element_type="widget" data-id="4645fad" data-settings='{"_animation":"zoomIn"}' data-widget_type="heading.default">
 <div class="elementor-widget-container">
