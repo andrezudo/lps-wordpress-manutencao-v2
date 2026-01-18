@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ Dev - Landing Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 1rem;
+        }
+        
+        .search-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .search-box input {
+            width: 100%;
+            max-width: 500px;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .search-box input::placeholder {
+            color: #666;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .card .path {
+            font-size: 0.85rem;
+            color: #00d4ff;
+            font-family: monospace;
+        }
+        
+        .card .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 0.75rem;
+            color: #00d4ff;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .category {
+            margin-top: 3rem;
+        }
+        
+        .category h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #7b2cbf;
+            display: inline-block;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛠️ Dev Server</h1>
+            <p class="subtitle">Landing Pages - Ambiente de Desenvolvimento</p>
+        </header>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" id="total-pages">0</div>
+                <div class="stat-label">Total de Páginas</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="total-cursos">0</div>
+                <div class="stat-label">Cursos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="total-esp">0</div>
+                <div class="stat-label">Especializações</div>
+            </div>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="search" placeholder="🔍 Buscar página..." autofocus>
+        </div>
+        
+        <div class="category">
+            <h2>📚 Cursos</h2>
+            <div class="grid" id="cursos-grid"></div>
+        </div>
+        
+        <div class="category">
+            <h2>🎓 Especializações</h2>
+            <div class="grid" id="especializacoes-grid"></div>
+        </div>
+        
+        <div class="category">
+            <h2>📄 Outras Páginas</h2>
+            <div class="grid" id="outras-grid"></div>
+        </div>
+        
+        <footer>
+            <p>Servidor rodando em <code>http://localhost:8000</code></p>
+        </footer>
+    </div>
+    
+    <script>
+        const pages = [
+            { name: "Página Principal", path: "/", folder: "root" },
+            { name: "Big Data Analytics e Mercado", path: "/big-data-analytics-e-mercado/", folder: "big-data-analytics-e-mercado" },
+            { name: "Comentarista de Futebol", path: "/comentarista-de-futebol/", folder: "comentarista-de-futebol" },
+            { name: "Comunicação e Marketing", path: "/comunicacao-e-marketing/", folder: "comunicacao-e-marketing" },
+            { name: "Comunidades", path: "/comunidades/", folder: "comunidades" },
+            { name: "Confirmação de Inscrição", path: "/confirmacao-inscricao/", folder: "confirmacao-inscricao" },
+            { name: "Coordenação Científica no Futebol", path: "/coordenacao-cientifica-no-futebol/", folder: "coordenacao-cientifica-no-futebol" },
+            { name: "Curso Agente FIFA", path: "/curso-agente-fifa/", folder: "curso-agente-fifa" },
+            { name: "Curso Análise de Desempenho e Mercado", path: "/curso-analise-de-desempenho-e-mercado/", folder: "curso-analise-de-desempenho-e-mercado" },
+            { name: "Curso Bolas Paradas", path: "/curso-bolas-paradas/", folder: "curso-bolas-paradas" },
+            { name: "Curso Ciência de Dados", path: "/curso-ciencia-de-dados/", folder: "curso-ciencia-de-dados" },
+            { name: "Curso Especialização Gestão no Futebol GT", path: "/curso-especializacao-gestao-no-futebol-gt/", folder: "curso-especializacao-gestao-no-futebol-gt" },
+            { name: "Curso Finanças no Futebol", path: "/curso-financas-no-futebol/", folder: "curso-financas-no-futebol" },
+            { name: "Curso Gestão no Futebol", path: "/curso-gestao-no-futebol/", folder: "curso-gestao-no-futebol" },
+            { name: "Curso Inteligência Artificial", path: "/curso-inteligencia-artificial/", folder: "curso-inteligencia-artificial" },
+            { name: "Curso Inteligência Artificial G", path: "/curso-inteligencia-artificial-g/", folder: "curso-inteligencia-artificial-g" },
+            { name: "Curso Massagista no Futebol", path: "/curso-massagista-no-futebol/", folder: "curso-massagista-no-futebol" },
+            { name: "Curso Odontologia no Futebol", path: "/curso-odontologia-no-futebol/", folder: "curso-odontologia-no-futebol" },
+            { name: "Curso Setorista no Futebol", path: "/curso-setorista-no-futebol/", folder: "curso-setorista-no-futebol" },
+            { name: "Especialização Análise de Desempenho e Mercado", path: "/especializacao-analise-de-desempenho-e-mercado/", folder: "especializacao-analise-de-desempenho-e-mercado" },
+            { name: "Especialização Comunicação e Marketing", path: "/especializacao-comunicacao-e-marketing/", folder: "especializacao-comunicacao-e-marketing" },
+            { name: "Especialização Direito no Futebol", path: "/especializacao-direito-no-futebol/", folder: "especializacao-direito-no-futebol" },
+            { name: "Especialização Fisioterapia no Futebol", path: "/especializacao-fisioterapia-no-futebol/", folder: "especializacao-fisioterapia-no-futebol" },
+            { name: "Especialização Gestão no Futebol", path: "/especializacao-gestao-no-futebol/", folder: "especializacao-gestao-no-futebol" },
+            { name: "Especialização Jornalismo no Futebol", path: "/especializacao-jornalismo-no-futebol/", folder: "especializacao-jornalismo-no-futebol" },
+            { name: "Especialização Medicina no Futebol", path: "/especializacao-medicina-no-futebol/", folder: "especializacao-medicina-no-futebol" },
+            { name: "Especialização Nutrição no Futebol", path: "/especializacao-nutricao-no-futebol/", folder: "especializacao-nutricao-no-futebol" },
+            { name: "Especialização Psicologia no Futebol", path: "/especializacao-psicologia-no-futebol/", folder: "especializacao-psicologia-no-futebol" },
+            { name: "Especialização Supervisor de Futebol", path: "/especializacao-supervisor-de-futebol/", folder: "especializacao-supervisor-de-futebol" },
+            { name: "Experiência Prática", path: "/experiencia-pratica/", folder: "experiencia-pratica" },
+            { name: "Formação Jornalismo no Futebol", path: "/formacao-jornalismo-no-futebol/", folder: "formacao-jornalismo-no-futebol" },
+            { name: "Fotografia no Futebol", path: "/fotografia-no-futebol/", folder: "fotografia-no-futebol" },
+            { name: "G Ciência de Dados", path: "/g-ciencia-de-dados/", folder: "g-ciencia-de-dados" },
+            { name: "Gestão Clube Empresa", path: "/gestao-clube-empresa/", folder: "gestao-clube-empresa" },
+            { name: "Google", path: "/google/", folder: "google" },
+            { name: "Google 2", path: "/google-2/", folder: "google-2" },
+            { name: "LPF Pro Comissão Técnica de Futsal", path: "/lpf-pro-comissao-tecnica-de-futsal/", folder: "lpf-pro-comissao-tecnica-de-futsal" },
+            { name: "Pós Graduação Direito", path: "/pos-graduacao-direito/", folder: "pos-graduacao-direito" },
+            { name: "Preparação Física e Recovery", path: "/preparacao-fisica-e-recovery/", folder: "preparacao-fisica-e-recovery" },
+            { name: "Software de Análise de Desempenho e Mercado", path: "/software-de-analise-de-desempenho-e-mercado/", folder: "software-de-analise-de-desempenho-e-mercado" },
+            { name: "Tática Campo e Estrutura de Jogo", path: "/tatica-campo-e-estrutura-de-jogo/", folder: "tatica-campo-e-estrutura-de-jogo" },
+            { name: "Tática Individual e Coletiva", path: "/tatica-individual-e-coletiva/", folder: "tatica-individual-e-coletiva" },
+            { name: "Treinador Auxiliar", path: "/treinador-auxiliar/", folder: "treinador-auxiliar" },
+            { name: "Treinadores na Prática", path: "/treinadores-na-pratica/", folder: "treinadores-na-pratica" },
+            { name: "Treinamento de Goleiros Avançado", path: "/treinamento-de-goleiros-avancado/", folder: "treinamento-de-goleiros-avancado" }
+        ];
+        
+        function getCategory(folder) {
+            if (folder.startsWith('curso-')) return 'cursos';
+            if (folder.startsWith('especializacao-')) return 'especializacoes';
+            return 'outras';
+        }
+        
+        function createCard(page) {
+            return `
+                <a href="${page.path}" class="card" data-name="${page.name.toLowerCase()}" data-folder="${page.folder}">
+                    <h3>${page.name}</h3>
+                    <div class="path">${page.path}</div>
+                    <span class="badge">${page.folder}</span>
+                </a>
+            `;
+        }
+        
+        function renderPages() {
+            const cursosGrid = document.getElementById('cursos-grid');
+            const espGrid = document.getElementById('especializacoes-grid');
+            const outrasGrid = document.getElementById('outras-grid');
+            
+            let cursos = 0, esp = 0;
+            
+            pages.forEach(page => {
+                const category = getCategory(page.folder);
+                const card = createCard(page);
+                
+                if (category === 'cursos') {
+                    cursosGrid.innerHTML += card;
+                    cursos++;
+                } else if (category === 'especializacoes') {
+                    espGrid.innerHTML += card;
+                    esp++;
+                } else {
+                    outrasGrid.innerHTML += card;
+                }
+            });
+            
+            document.getElementById('total-pages').textContent = pages.length;
+            document.getElementById('total-cursos').textContent = cursos;
+            document.getElementById('total-esp').textContent = esp;
+        }
+        
+        function filterPages(searchTerm) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const name = card.dataset.name;
+                const folder = card.dataset.folder;
+                const matches = name.includes(searchTerm.toLowerCase()) || 
+                               folder.includes(searchTerm.toLowerCase());
+                card.classList.toggle('hidden', !matches);
+            });
+        }
+        
+        document.getElementById('search').addEventListener('input', (e) => {
+            filterPages(e.target.value);
+        });
+        
+        renderPages();
+    </script>
+</body>
+</html>
