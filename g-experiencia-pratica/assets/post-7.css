@@ -430,3 +430,29 @@
   }
 }
 
+/* MOBILE FIX – DESATIVAR FLEX-WRAP NO HERO E CENTRALIZAR LOGO */
+
+/* MOBILE FIX – DESATIVAR FLEX-WRAP NO HERO E CENTRALIZAR LOGO
+   Escopo: apenas no mobile e apenas na seção inicial (cb868d1).
+*/
+@media (max-width: 767px) {
+  /* Equivalente a desativar "--flex-wrap" no mobile */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1{
+    --flex-wrap-mobile: nowrap !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Mantém alinhamento central do conteúdo do HERO */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    align-items: center !important;
+  }
+
+  /* Centraliza a logo (widget de imagem 6e4d627) */
+  .elementor-17905 .elementor-element.elementor-element-6e4d627 img{
+    display:block !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+}
+
