@@ -456,3 +456,29 @@
 
 }
 
+/* MOBILE FIX – HERO SEM CORTE (flex-wrap nowrap em coluna) */
+
+/* MOBILE FIX – HERO SEM CORTE (flex-wrap nowrap em coluna)
+   Motivo: com flex-direction: column + flex-wrap: wrap, o container pode “quebrar em colunas” e cortar/overlap.
+   Escopo: somente mobile e somente seção inicial (cb868d1).
+*/
+@media (max-width: 767px) {
+  .elementor-17905 .elementor-element.elementor-element-cb868d1{
+    --flex-wrap-mobile: nowrap !important;
+  }
+  .elementor-17905 .elementor-element.elementor-element-cb868d1,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    flex-wrap: nowrap !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Fallback seguro para centralizar qualquer widget de imagem (caso exista logo dentro do HERO) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-widget-image img{
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
