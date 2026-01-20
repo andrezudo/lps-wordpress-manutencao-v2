@@ -1,1 +1,534 @@
+
+/* FI - HERO (Experiencia Pratica): video incorporado + ordem correta no mobile */
+.elementor-element-cb868d1 > .e-con-inner {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Desktop: texto 75% | video 25% */
+@media (min-width: 769px) {
+  .elementor-element-cb868d1 .elementor-element-3dbc8d7 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .elementor-element-cb868d1 .elementor-element-8bed26f {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+/* Video responsivo (sem altura fixa) */
+.fi-hero-video {
+  width: 100%;
+}
+.fi-hero-video iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  display: block;
+  border: 0;
+  border-radius: 16px;
+}
+
+/* Mobile: texto antes do video + titulo somente no mobile */
+.fi-mobile-video-title {
+  display: none;
+}
+@media (max-width: 768px) {
+  .elementor-element-cb868d1 > .e-con-inner {
+    flex-direction: column;
+  }
+  .elementor-element-cb868d1 .elementor-element-3dbc8d7 { order: 1; }
+  .elementor-element-cb868d1 .elementor-element-8bed26f { order: 2; }
+
+  .fi-mobile-video-title {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0 0 12px 0;
+  }
+}
+
 .elementor-kit-7{--e-global-color-primary:#0075ED;--e-global-color-secondary:#54595F;--e-global-color-text:#7A7A7A;--e-global-color-accent:#61CE70;--e-global-typography-primary-font-family:"Roboto";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Roboto Slab";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Roboto";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Roboto";--e-global-typography-accent-font-weight:500;}.elementor-kit-7 e-page-transition{background-color:#FFBC7D;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.e-con{--container-max-width:1140px;}.elementor-widget:not(:last-child){margin-block-end:20px;}.elementor-element{--widgets-spacing:20px 20px;--widgets-spacing-row:20px;--widgets-spacing-column:20px;}{}h1.entry-title{display:var(--page-title-display);}.site-header{padding-inline-end:0px;padding-inline-start:0px;}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}
+/* AJUSTE FINAL MOBILE – TEXTO ANTES DO VÍDEO */
+@media (max-width: 768px) {
+  .hero-text {
+    order: 1 !important;
+  }
+  .hero-video {
+    order: 2 !important;
+  }
+}
+
+
+/* FIX MOBILE HERO ORDER + TITLE (only hero section) */
+@media (max-width: 768px) {
+  /* Ensure hero inner uses normal column flow */
+  .elementor-element-cb868d1 > .e-con-inner{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Text block (title + paragraph + button) first */
+  .elementor-element-cb868d1 .elementor-element-3dbc8d7{
+    order: 1 !important;
+  }
+
+  /* Video block second */
+  .elementor-element-cb868d1 .elementor-element-8bed26f{
+    order: 2 !important;
+  }
+
+  /* Mobile helper title before video */
+  .fi-mobile-video-title{
+    color: #ffffff !important;
+    text-align: center !important;
+  }
+}
+
+/* AJUSTE FINAL MOBILE – VIDEO SEM CORTE */
+@media (max-width: 768px) {
+  .hero-video,
+  .hero-video iframe {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    aspect-ratio: 9 / 16;
+  }
+}
+
+/* AJUSTE FINAL – ALTURA DA SEÇÃO HERO NO MOBILE */
+@media (max-width: 768px) {
+  .hero-container,
+  .hero-section,
+  .elementor-section {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+
+/* AJUSTE FINAL – HERO MOBILE SEM CORTE (pai do vídeo) */
+@media (max-width: 768px) {
+  /* Garante que o container do HERO cresça conforme o conteúdo (sem cortar o iframe) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1{
+    --height: auto !important;
+    --min-height: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Remove qualquer clipping vindo das camadas de motion effects do Elementor */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .elementor-motion-effects-container,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
+    overflow: visible !important;
+  }
+
+  /* Segurança extra para o bloco do vídeo */
+  .elementor-17905 .elementor-element.elementor-element-8bed26f,
+  .elementor-17905 .elementor-element.elementor-element-8bed26f > .e-con-inner,
+  .elementor-17905 .elementor-element.elementor-element-8bed26f .elementor-widget-container{
+    overflow: visible !important;
+  }
+
+  /* Evita altura travada no iframe (mantém proporção) */
+  .fi-hero-video iframe{
+    height: auto !important;
+    max-height: none !important;
+  }
+}
+
+
+/* AJUSTE EXTRA – HERO VIDEO MOBILE SEM SOBREPOSIÇÃO (WRAPPER)
+   Motivo: alguns browsers podem calcular a altura do iframe de Shorts de forma inconsistente,
+   fazendo a próxima seção "subir" e aparentar corte/overlap. Este wrapper força uma altura real.
+*/
+@media (max-width: 768px) {
+  /* garante fluxo e espaço real do bloco do vídeo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f {
+    position: relative !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin-top: 16px !important;
+    margin-bottom: 24px !important;
+    z-index: 2 !important;
+    overflow: visible !important;
+  }
+
+  /* wrapper com aspect-ratio para dar altura ao bloco */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+    overflow: hidden !important; /* mantém bordas arredondadas sem vazar */
+    border-radius: 16px !important;
+  }
+
+  /* iframe preenche o wrapper (sem corte) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    border: 0 !important;
+  }
+
+  /* segurança: próxima seção não pode "subir" sobre o vídeo */
+  .elementor-17905 .elementor-element.elementor-element-f20d201 {
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 0 !important;
+  }
+}
+
+
+/* FIX MOBILE – VIDEO WRAPPER COM ALTURA REAL (SEM SOBREPOR)
+   Usa técnica de padding para garantir altura em qualquer browser (evita overlay/corte).
+*/
+@media (max-width: 768px) {
+  /* garante que o bloco do vídeo participe do fluxo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    position: static !important;
+    z-index: auto !important;
+    overflow: visible !important;
+  }
+
+  /* wrapper com altura real via padding (9:16) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-top: 177.7778% !important; /* 16/9 = 1.777... */
+    overflow: hidden !important;
+    border-radius: 16px !important;
+    aspect-ratio: auto !important; /* desativa cálculo por aspect-ratio */
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+  }
+}
+
+
+/* HOTFIX MOBILE – VIDEO EM FLUXO (SEM SOBREPOSIÇÃO COM PRÓXIMA SEÇÃO)
+   Objetivo: evitar que o iframe fique "fora do fluxo" e a próxima seção suba por cima.
+   Escopo: apenas HERO (cb868d1) no mobile.
+*/
+@media (max-width: 768px) {
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    overflow: visible !important;
+    margin-bottom: 24px !important; /* garante espaço real antes da próxima seção */
+  }
+
+  /* remove wrapper com altura 0/padding (se existir) e mantém no fluxo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    height: auto !important;
+    padding-top: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+    border-radius: 16px !important;
+  }
+
+  /* iframe com aspect-ratio (altura calculada) e em fluxo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 9 / 16 !important;
+    display: block !important;
+    max-height: none !important;
+    border: 0 !important;
+  }
+}
+
+/* FINAL MOBILE HERO FIX – ORDEM + VIDEO SEM CORTE/OVERLAP (SCOPED) */
+
+/* FINAL MOBILE HERO FIX – ORDEM + VIDEO SEM CORTE/OVERLAP (SCOPED)
+   Escopo: apenas a seção inicial (cb868d1) no mobile.
+*/
+@media (max-width: 768px) {
+  /* garante que o hero cresça conforme o conteúdo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* força layout em coluna e ordem correta */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .elementor-17905 .elementor-element.elementor-element-3dbc8d7{ order: 1 !important; }
+  .elementor-17905 .elementor-element.elementor-element-8bed26f{ order: 2 !important; }
+
+  /* título antes do vídeo (estilo pedido) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-mobile-video-title{
+    color: #fff !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    margin: 0 0 12px 0 !important;
+  }
+
+  /* bloco do vídeo precisa reservar espaço real (sem depender do iframe) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    position: relative !important;
+    overflow: visible !important;
+    margin-top: 12px !important;
+    margin-bottom: 28px !important; /* impede a próxima seção de encostar/sobrepor */
+  }
+
+  /* wrapper com altura real via padding (9:16) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-top: 177.7778% !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+  }
+
+  /* segurança: próxima seção não pode invadir por empilhamento */
+  .elementor-17905 .elementor-element.elementor-element-f20d201{
+    position: relative !important;
+    z-index: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* FINAL PATCH v2 – Z-INDEX PARA IMPEDIR SEÇÃO SEGUINTE SOBREPOR O VÍDEO (MOBILE) */
+
+/* FINAL PATCH v2 – Z-INDEX PARA IMPEDIR SEÇÃO SEGUINTE SOBREPOR O VÍDEO (MOBILE)
+   Escopo: somente mobile e somente HERO + próxima seção imediata.
+*/
+@media (max-width: 768px) {
+  /* HERO acima da seção seguinte */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1{
+    position: relative !important;
+    z-index: 5 !important;
+  }
+
+  /* container do vídeo acima */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    z-index: 6 !important;
+  }
+
+  /* próxima seção abaixo */
+  .elementor-17905 .elementor-element.elementor-element-f20d201{
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* fundos/overlays da próxima seção ficam atrás do conteúdo e atrás do HERO */
+  .elementor-17905 .elementor-element.elementor-element-f20d201 > .elementor-background-overlay,
+  .elementor-17905 .elementor-element.elementor-element-f20d201 > .elementor-motion-effects-container,
+  .elementor-17905 .elementor-element.elementor-element-f20d201 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* MOBILE HOTFIX – VIDEO MENOR + SEM SOBREPOR SEÇÃO SEGUINTE */
+
+/* MOBILE HOTFIX – VIDEO MENOR + SEM SOBREPOR SEÇÃO SEGUINTE
+   Escopo: apenas mobile. Ajusta tamanho do vídeo e remove necessidade de z-index alto,
+   garantindo que a seção seguinte fique abaixo (sem overlay).
+*/
+@media (max-width: 768px) {
+  /* desfaz empilhamento forçado (evita vídeo “por cima” da próxima seção) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video,
+  .elementor-17905 .elementor-element.elementor-element-f20d201{
+    z-index: auto !important;
+  }
+
+  /* dá respiro real antes da seção seguinte */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    margin-bottom: 32px !important;
+  }
+
+  /* diminui um pouco a altura do vídeo (mantém o embed sem cortar) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    height: 0 !important;
+    padding-top: 150% !important; /* menor que 177.78% */
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* FIX DEFINITIVO MOBILE – VIDEO COM ALTURA REAL (SEM CORTE/SEM SOBREPOSIÇÃO) */
+
+/* FIX DEFINITIVO MOBILE – VIDEO COM ALTURA REAL (SEM CORTE/SEM SOBREPOSIÇÃO)
+   Escopo: somente MOBILE e somente a seção HERO (cb868d1).
+   Estratégia: definir altura real (vh) no wrapper do vídeo, sem depender de padding/aspect-ratio.
+*/
+@media (max-width: 768px) {
+  /* garante espaço antes da próxima seção */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    margin-bottom: 36px !important;
+    overflow: visible !important;
+  }
+
+  /* wrapper do vídeo com altura real e responsiva (não corta e não deixa a seção de baixo invadir) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    width: 100% !important;
+    height: 65vh !important;      /* diminui um pouco o vídeo */
+    max-height: 520px !important; /* evita ficar grande demais */
+    min-height: 360px !important; /* evita ficar pequeno demais */
+    padding-top: 0 !important;    /* neutraliza patches antigos */
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    border: 0 !important;
+  }
+}
+
+/* MOBILE FIX – DESATIVAR FLEX-WRAP NO HERO E CENTRALIZAR LOGO */
+
+/* MOBILE FIX – DESATIVAR FLEX-WRAP NO HERO E CENTRALIZAR LOGO
+   Escopo: apenas no mobile e apenas na seção inicial (cb868d1).
+*/
+@media (max-width: 767px) {
+  /* Equivalente a desativar "--flex-wrap" no mobile */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1{
+    --flex-wrap-mobile: nowrap !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Mantém alinhamento central do conteúdo do HERO */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    align-items: center !important;
+  }
+
+  /* Centraliza a logo (widget de imagem 6e4d627) */
+  .elementor-17905 .elementor-element.elementor-element-6e4d627 img{
+    display:block !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+}
+
+/* FI MOBILE ONLY VIDEO SECTION */
+
+/* FI MOBILE ONLY VIDEO SECTION
+   Objetivo: no mobile, esconder o vídeo do HERO e exibir uma nova seção abaixo com título + vídeo.
+   Escopo: somente mobile.
+*/
+.fi-mobile-only{ display:none; }
+
+@media (max-width: 767px){
+  /* esconde o vídeo dentro do HERO (mantém desktop intacto) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    display: none !important;
+  }
+
+  /* mostra a nova seção */
+  .fi-mobile-only{ display:block !important; }
+
+  .elementor-element-fi-mobile-video-section{
+    padding-top: 20px !important;
+    padding-bottom: 30px !important;
+  }
+
+  /* altura 100%/tela para comportar Shorts sem corte */
+  .elementor-element-fi-mobile-video-section > .e-con-inner{
+    min-height: 100vh !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-title{
+    color: #fff !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    margin: 0 !important;
+  }
+
+  /* vídeo com margem/visualização ideal */
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-wrap{
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    /* reserva altura grande sem depender de aspect-ratio do browser */
+    height: 78vh !important;
+    max-height: 620px !important;
+    min-height: 420px !important;
+  }
+
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-wrap iframe{
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    display: block !important;
+  }
+}
+
+/* FI MOBILE VIDEO SECTION – CONTRAST BACKGROUND */
+
+/* FI MOBILE VIDEO SECTION – CONTRAST BACKGROUND
+   Ajuste visual: dá contraste entre as seções de borda no mobile.
+*/
+@media (max-width: 767px){
+  .elementor-element-fi-mobile-video-section{
+    background: #081428 !important; /* azul bem escuro (alto contraste) */
+  }
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-wrap{
+    background: #000 !important; /* moldura/underlay para o player */
+  }
+}
+
