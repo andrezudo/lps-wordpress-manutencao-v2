@@ -325,3 +325,108 @@
   }
 }
 
+/* FINAL PATCH v2 – Z-INDEX PARA IMPEDIR SEÇÃO SEGUINTE SOBREPOR O VÍDEO (MOBILE) */
+
+/* FINAL PATCH v2 – Z-INDEX PARA IMPEDIR SEÇÃO SEGUINTE SOBREPOR O VÍDEO (MOBILE)
+   Escopo: somente mobile e somente HERO + próxima seção imediata.
+*/
+@media (max-width: 768px) {
+  /* HERO acima da seção seguinte */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1{
+    position: relative !important;
+    z-index: 5 !important;
+  }
+
+  /* container do vídeo acima */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    z-index: 6 !important;
+  }
+
+  /* próxima seção abaixo */
+  .elementor-17905 .elementor-element.elementor-element-f20d201{
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* fundos/overlays da próxima seção ficam atrás do conteúdo e atrás do HERO */
+  .elementor-17905 .elementor-element.elementor-element-f20d201 > .elementor-background-overlay,
+  .elementor-17905 .elementor-element.elementor-element-f20d201 > .elementor-motion-effects-container,
+  .elementor-17905 .elementor-element.elementor-element-f20d201 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* MOBILE HOTFIX – VIDEO MENOR + SEM SOBREPOR SEÇÃO SEGUINTE */
+
+/* MOBILE HOTFIX – VIDEO MENOR + SEM SOBREPOR SEÇÃO SEGUINTE
+   Escopo: apenas mobile. Ajusta tamanho do vídeo e remove necessidade de z-index alto,
+   garantindo que a seção seguinte fique abaixo (sem overlay).
+*/
+@media (max-width: 768px) {
+  /* desfaz empilhamento forçado (evita vídeo “por cima” da próxima seção) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video,
+  .elementor-17905 .elementor-element.elementor-element-f20d201{
+    z-index: auto !important;
+  }
+
+  /* dá respiro real antes da seção seguinte */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    margin-bottom: 32px !important;
+  }
+
+  /* diminui um pouco a altura do vídeo (mantém o embed sem cortar) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    height: 0 !important;
+    padding-top: 150% !important; /* menor que 177.78% */
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* FIX DEFINITIVO MOBILE – VIDEO COM ALTURA REAL (SEM CORTE/SEM SOBREPOSIÇÃO) */
+
+/* FIX DEFINITIVO MOBILE – VIDEO COM ALTURA REAL (SEM CORTE/SEM SOBREPOSIÇÃO)
+   Escopo: somente MOBILE e somente a seção HERO (cb868d1).
+   Estratégia: definir altura real (vh) no wrapper do vídeo, sem depender de padding/aspect-ratio.
+*/
+@media (max-width: 768px) {
+  /* garante espaço antes da próxima seção */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    margin-bottom: 36px !important;
+    overflow: visible !important;
+  }
+
+  /* wrapper do vídeo com altura real e responsiva (não corta e não deixa a seção de baixo invadir) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    width: 100% !important;
+    height: 65vh !important;      /* diminui um pouco o vídeo */
+    max-height: 520px !important; /* evita ficar grande demais */
+    min-height: 360px !important; /* evita ficar pequeno demais */
+    padding-top: 0 !important;    /* neutraliza patches antigos */
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    border: 0 !important;
+  }
+}
+
