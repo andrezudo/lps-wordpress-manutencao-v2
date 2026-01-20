@@ -1,0 +1,21 @@
+.elementor-animation-grow{transition-duration:.3s;transition-property:transform}.elementor-animation-grow:active,.elementor-animation-grow:focus,.elementor-animation-grow:hover{transform:scale(1.1)}
+/* AJUSTE FINAL MOBILE – TEXTO ANTES DO VÍDEO */
+@media (max-width: 768px) {
+  .hero-text {
+    order: 1 !important;
+  }
+  .hero-video {
+    order: 2 !important;
+  }
+}
+
+/* AJUSTE FINAL MOBILE – VIDEO SEM CORTE */
+@media (max-width: 768px) {
+  .hero-video,
+  .hero-video iframe {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    aspect-ratio: 9 / 16;
+  }
+}

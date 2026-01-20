@@ -1,0 +1,21 @@
+#wp-admin-bar-elementor_edit_page>.ab-item:before{content:"\e813";font-family:eicons;font-size:18px;inset-block-start:3px}#wp-admin-bar-elementor_edit_page .ab-submenu .ab-item{display:flex;width:200px}#wp-admin-bar-elementor_edit_page .elementor-edit-link-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%}#wp-admin-bar-elementor_edit_page .elementor-edit-link-type{background:#3f444b;border-radius:3px;font-size:11px;line-height:9px;margin-block-start:6px;padding:4px 8px}#wp-admin-bar-elementor_inspector>.ab-item:before{content:"\f348";inset-block-start:2px}#wpadminbar *{font-style:normal}
+/* AJUSTE FINAL MOBILE – TEXTO ANTES DO VÍDEO */
+@media (max-width: 768px) {
+  .hero-text {
+    order: 1 !important;
+  }
+  .hero-video {
+    order: 2 !important;
+  }
+}
+
+/* AJUSTE FINAL MOBILE – VIDEO SEM CORTE */
+@media (max-width: 768px) {
+  .hero-video,
+  .hero-video iframe {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    aspect-ratio: 9 / 16;
+  }
+}
