@@ -1,0 +1,9 @@
+services:
+  web:
+    build: ./dev
+    ports:
+      - "8000:80"
+      - "8001:3001"
+    volumes:
+      - ./:/app
+    restart: unless-stopped
