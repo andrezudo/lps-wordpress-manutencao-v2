@@ -518,3 +518,17 @@
   }
 }
 
+/* FI MOBILE VIDEO SECTION – CONTRAST BACKGROUND */
+
+/* FI MOBILE VIDEO SECTION – CONTRAST BACKGROUND
+   Ajuste visual: dá contraste entre as seções de borda no mobile.
+*/
+@media (max-width: 767px){
+  .elementor-element-fi-mobile-video-section{
+    background: #081428 !important; /* azul bem escuro (alto contraste) */
+  }
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-wrap{
+    background: #000 !important; /* moldura/underlay para o player */
+  }
+}
+
