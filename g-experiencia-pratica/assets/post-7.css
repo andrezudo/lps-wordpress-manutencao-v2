@@ -96,3 +96,232 @@
     aspect-ratio: 9 / 16;
   }
 }
+
+/* AJUSTE FINAL – ALTURA DA SEÇÃO HERO NO MOBILE */
+@media (max-width: 768px) {
+  .hero-container,
+  .hero-section,
+  .elementor-section {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+
+/* AJUSTE FINAL – HERO MOBILE SEM CORTE (pai do vídeo) */
+@media (max-width: 768px) {
+  /* Garante que o container do HERO cresça conforme o conteúdo (sem cortar o iframe) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1{
+    --height: auto !important;
+    --min-height: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Remove qualquer clipping vindo das camadas de motion effects do Elementor */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .elementor-motion-effects-container,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .elementor-motion-effects-container > .elementor-motion-effects-layer{
+    overflow: visible !important;
+  }
+
+  /* Segurança extra para o bloco do vídeo */
+  .elementor-17905 .elementor-element.elementor-element-8bed26f,
+  .elementor-17905 .elementor-element.elementor-element-8bed26f > .e-con-inner,
+  .elementor-17905 .elementor-element.elementor-element-8bed26f .elementor-widget-container{
+    overflow: visible !important;
+  }
+
+  /* Evita altura travada no iframe (mantém proporção) */
+  .fi-hero-video iframe{
+    height: auto !important;
+    max-height: none !important;
+  }
+}
+
+
+/* AJUSTE EXTRA – HERO VIDEO MOBILE SEM SOBREPOSIÇÃO (WRAPPER)
+   Motivo: alguns browsers podem calcular a altura do iframe de Shorts de forma inconsistente,
+   fazendo a próxima seção "subir" e aparentar corte/overlap. Este wrapper força uma altura real.
+*/
+@media (max-width: 768px) {
+  /* garante fluxo e espaço real do bloco do vídeo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f {
+    position: relative !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin-top: 16px !important;
+    margin-bottom: 24px !important;
+    z-index: 2 !important;
+    overflow: visible !important;
+  }
+
+  /* wrapper com aspect-ratio para dar altura ao bloco */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 9 / 16 !important;
+    height: auto !important;
+    overflow: hidden !important; /* mantém bordas arredondadas sem vazar */
+    border-radius: 16px !important;
+  }
+
+  /* iframe preenche o wrapper (sem corte) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    border: 0 !important;
+  }
+
+  /* segurança: próxima seção não pode "subir" sobre o vídeo */
+  .elementor-17905 .elementor-element.elementor-element-f20d201 {
+    position: relative !important;
+    z-index: 1 !important;
+    margin-top: 0 !important;
+  }
+}
+
+
+/* FIX MOBILE – VIDEO WRAPPER COM ALTURA REAL (SEM SOBREPOR)
+   Usa técnica de padding para garantir altura em qualquer browser (evita overlay/corte).
+*/
+@media (max-width: 768px) {
+  /* garante que o bloco do vídeo participe do fluxo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    position: static !important;
+    z-index: auto !important;
+    overflow: visible !important;
+  }
+
+  /* wrapper com altura real via padding (9:16) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-top: 177.7778% !important; /* 16/9 = 1.777... */
+    overflow: hidden !important;
+    border-radius: 16px !important;
+    aspect-ratio: auto !important; /* desativa cálculo por aspect-ratio */
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+  }
+}
+
+
+/* HOTFIX MOBILE – VIDEO EM FLUXO (SEM SOBREPOSIÇÃO COM PRÓXIMA SEÇÃO)
+   Objetivo: evitar que o iframe fique "fora do fluxo" e a próxima seção suba por cima.
+   Escopo: apenas HERO (cb868d1) no mobile.
+*/
+@media (max-width: 768px) {
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    overflow: visible !important;
+    margin-bottom: 24px !important; /* garante espaço real antes da próxima seção */
+  }
+
+  /* remove wrapper com altura 0/padding (se existir) e mantém no fluxo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    height: auto !important;
+    padding-top: 0 !important;
+    aspect-ratio: auto !important;
+    overflow: visible !important;
+    border-radius: 16px !important;
+  }
+
+  /* iframe com aspect-ratio (altura calculada) e em fluxo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 9 / 16 !important;
+    display: block !important;
+    max-height: none !important;
+    border: 0 !important;
+  }
+}
+
+/* FINAL MOBILE HERO FIX – ORDEM + VIDEO SEM CORTE/OVERLAP (SCOPED) */
+
+/* FINAL MOBILE HERO FIX – ORDEM + VIDEO SEM CORTE/OVERLAP (SCOPED)
+   Escopo: apenas a seção inicial (cb868d1) no mobile.
+*/
+@media (max-width: 768px) {
+  /* garante que o hero cresça conforme o conteúdo */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1,
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* força layout em coluna e ordem correta */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .elementor-17905 .elementor-element.elementor-element-3dbc8d7{ order: 1 !important; }
+  .elementor-17905 .elementor-element.elementor-element-8bed26f{ order: 2 !important; }
+
+  /* título antes do vídeo (estilo pedido) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-mobile-video-title{
+    color: #fff !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    margin: 0 0 12px 0 !important;
+  }
+
+  /* bloco do vídeo precisa reservar espaço real (sem depender do iframe) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    position: relative !important;
+    overflow: visible !important;
+    margin-top: 12px !important;
+    margin-bottom: 28px !important; /* impede a próxima seção de encostar/sobrepor */
+  }
+
+  /* wrapper com altura real via padding (9:16) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video{
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-top: 177.7778% !important;
+    overflow: hidden !important;
+    border-radius: 16px !important;
+  }
+
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .fi-hero-video iframe{
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+  }
+
+  /* segurança: próxima seção não pode invadir por empilhamento */
+  .elementor-17905 .elementor-element.elementor-element-f20d201{
+    position: relative !important;
+    z-index: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+

@@ -19,3 +19,14 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}*,:after,:before{box-sizing:
     aspect-ratio: 9 / 16;
   }
 }
+
+/* AJUSTE FINAL – ALTURA DA SEÇÃO HERO NO MOBILE */
+@media (max-width: 768px) {
+  .hero-container,
+  .hero-section,
+  .elementor-section {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+}
