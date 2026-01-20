@@ -456,28 +456,79 @@
 
 }
 
-/* MOBILE FIX – CB868D1 SEM ALTURA LIMITADA (SHORTS 9:16) */
+/* FI MOBILE ONLY VIDEO SECTION */
 
-/* MOBILE FIX – CB868D1 SEM ALTURA LIMITADA (SHORTS 9:16)
-   Escopo: somente mobile e somente seção inicial (cb868d1).
-   Objetivo: remover limitações de altura do container que podem cortar o Shorts.
+/* FI MOBILE ONLY VIDEO SECTION
+   Objetivo: no mobile, esconder o vídeo do HERO e exibir uma nova seção abaixo com título + vídeo.
+   Escopo: somente mobile.
 */
-@media (max-width: 767px) {
-  .elementor-17905 .elementor-element.elementor-element-cb868d1{
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
+.fi-mobile-only{ display:none; }
 
-    /* remove as “travas” de altura dos widgets/filhos (Elementor container vars) */
-    --min-height: 0 !important;
-    --height: auto !important;
-    --container-widget-height: initial !important;
+@media (max-width: 767px){
+  /* esconde o vídeo dentro do HERO (mantém desktop intacto) */
+  .elementor-17905 .elementor-element.elementor-element-cb868d1 .elementor-element.elementor-element-8bed26f{
+    display: none !important;
   }
 
-  .elementor-17905 .elementor-element.elementor-element-cb868d1 > .e-con-inner{
+  /* mostra a nova seção */
+  .fi-mobile-only{ display:block !important; }
+
+  .elementor-element-fi-mobile-video-section{
+    padding-top: 20px !important;
+    padding-bottom: 30px !important;
+  }
+
+  /* altura 100%/tela para comportar Shorts sem corte */
+  .elementor-element-fi-mobile-video-section > .e-con-inner{
+    min-height: 100vh !important;
     height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
+
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-title{
+    color: #fff !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    margin: 0 !important;
+  }
+
+  /* vídeo com margem/visualização ideal */
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-wrap{
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    /* reserva altura grande sem depender de aspect-ratio do browser */
+    height: 78vh !important;
+    max-height: 620px !important;
+    min-height: 420px !important;
+  }
+
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-wrap iframe{
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+    display: block !important;
+  }
+}
+
+/* FI MOBILE VIDEO SECTION – CONTRAST BACKGROUND */
+
+/* FI MOBILE VIDEO SECTION – CONTRAST BACKGROUND
+   Ajuste visual: dá contraste entre as seções de borda no mobile.
+*/
+@media (max-width: 767px){
+  .elementor-element-fi-mobile-video-section{
+    background: #081428 !important; /* azul bem escuro (alto contraste) */
+  }
+  .elementor-element-fi-mobile-video-section .fi-mobile-video-wrap{
+    background: #000 !important; /* moldura/underlay para o player */
   }
 }
 
